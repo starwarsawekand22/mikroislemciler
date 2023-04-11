@@ -1,0 +1,23 @@
+#include <10F220.h>
+#fuses NOMCLR, IOSC8
+#use delay (clock = 8 Mhz)
+
+int i =0;
+void main()
+{
+   SETUP_TIMER_0(0); // timer 0 ý çalýþtýrmayacaðýz.
+   output_high(pin_b0); // kýrmýzý ledi yaktýk. header dosyasýndan b0 ý bulduk.
+   while(TRUE)
+   {
+      if(input(pin_b3) == 0) // butona basýldý mý?
+      {
+         delay_ms(50); // buton arkýnýn söndürülmesi için kullanýlýr.
+         while(input(pin_b3) == 0) // buton býrakýlana kadar bekle 
+         
+         
+         
+         
+         }
+   }
+
+}

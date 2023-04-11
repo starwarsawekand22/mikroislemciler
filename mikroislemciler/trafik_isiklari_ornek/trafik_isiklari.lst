@@ -1,0 +1,222 @@
+CCS PCM C Compiler, Version 5.025, 5967               11-Nis-23 20:49
+
+               Filename:   C:\Users\Gokay_Egilmez\Desktop\mikroislemciler\trafik_isiklari_ornek\trafik_isiklari.lst
+
+               ROM used:   147 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           9 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... #include <16f877a.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #fuses xt, nowdt 
+.................... #use delay(clock=4mhz) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... unsigned int16 i;// zamaný bununla tanýmlýcaz 16 bitlik tanýmladýk saklayýcýyý. 
+.................... void main() 
+0019:  MOVF   03,W
+001A:  ANDLW  1F
+001B:  MOVWF  03
+001C:  MOVLW  FF
+001D:  MOVWF  22
+001E:  BSF    03.5
+001F:  BSF    1F.0
+0020:  BSF    1F.1
+0021:  BSF    1F.2
+0022:  BCF    1F.3
+0023:  MOVLW  07
+0024:  MOVWF  1C
+0025:  BCF    03.7
+.................... { 
+....................    output_b(0); output_c(0); 
+0026:  CLRF   06
+0027:  BCF    03.5
+0028:  CLRF   06
+0029:  MOVLW  00
+002A:  MOVWF  22
+002B:  BSF    03.5
+002C:  CLRF   07
+002D:  BCF    03.5
+002E:  CLRF   07
+....................    while(TRUE) 
+....................    { 
+....................       output_b(0b10000011); 
+002F:  BSF    03.5
+0030:  CLRF   06
+0031:  MOVLW  83
+0032:  BCF    03.5
+0033:  MOVWF  06
+....................       output_c(0b10000011); // binary formatta yazdýk bilerek 0 lar sönük 1 ler yanýk b partýna baðlý olan ledler 
+0034:  MOVLW  00
+0035:  MOVWF  22
+0036:  BSF    03.5
+0037:  CLRF   07
+0038:  MOVLW  83
+0039:  BCF    03.5
+003A:  MOVWF  07
+....................        
+....................        
+....................       for(i=0; i<500; i++) //zamaný parçaladýk burda 
+003B:  CLRF   21
+003C:  CLRF   20
+003D:  MOVF   21,W
+003E:  SUBLW  01
+003F:  BTFSS  03.0
+0040:  GOTO   060
+0041:  BTFSS  03.2
+0042:  GOTO   047
+0043:  MOVF   20,W
+0044:  SUBLW  F3
+0045:  BTFSS  03.0
+0046:  GOTO   060
+....................       { 
+....................          delay_ms(10); 
+0047:  MOVLW  0A
+0048:  MOVWF  23
+0049:  CALL   004
+....................          if(i == 400) 
+004A:  MOVF   20,W
+004B:  SUBLW  90
+004C:  BTFSS  03.2
+004D:  GOTO   05C
+004E:  DECFSZ 21,W
+004F:  GOTO   05C
+....................          { 
+....................             output_b(0b10001111); //sarýlarý yaktýk 4. sn ye de 
+0050:  BSF    03.5
+0051:  CLRF   06
+0052:  MOVLW  8F
+0053:  BCF    03.5
+0054:  MOVWF  06
+....................             output_c(0b10001111); 
+0055:  MOVLW  00
+0056:  MOVWF  22
+0057:  BSF    03.5
+0058:  CLRF   07
+0059:  MOVLW  8F
+005A:  BCF    03.5
+005B:  MOVWF  07
+....................          } 
+005C:  INCF   20,F
+005D:  BTFSC  03.2
+005E:  INCF   21,F
+005F:  GOTO   03D
+....................       } 
+....................       // buraya kadar ilk 5 sn yi yazdýk yayalara yeþil arabalara kýrmýzý ile baþladýk  
+....................        
+....................        
+....................       output_b(0b01110000);  
+0060:  BSF    03.5
+0061:  CLRF   06
+0062:  MOVLW  70
+0063:  BCF    03.5
+0064:  MOVWF  06
+....................       output_c(0b01110000); 
+0065:  MOVLW  00
+0066:  MOVWF  22
+0067:  BSF    03.5
+0068:  CLRF   07
+0069:  MOVLW  70
+006A:  BCF    03.5
+006B:  MOVWF  07
+....................       for(i=0; i<500; i++) //zamaný parçaladýk burda 
+006C:  CLRF   21
+006D:  CLRF   20
+006E:  MOVF   21,W
+006F:  SUBLW  01
+0070:  BTFSS  03.0
+0071:  GOTO   091
+0072:  BTFSS  03.2
+0073:  GOTO   078
+0074:  MOVF   20,W
+0075:  SUBLW  F3
+0076:  BTFSS  03.0
+0077:  GOTO   091
+....................       { 
+....................          delay_ms(10); 
+0078:  MOVLW  0A
+0079:  MOVWF  23
+007A:  CALL   004
+....................          if(i == 400) 
+007B:  MOVF   20,W
+007C:  SUBLW  90
+007D:  BTFSS  03.2
+007E:  GOTO   08D
+007F:  DECFSZ 21,W
+0080:  GOTO   08D
+....................          { 
+....................             output_b(0b01111100); //sarýlarý yaktýk 4. sn ye de 
+0081:  BSF    03.5
+0082:  CLRF   06
+0083:  MOVLW  7C
+0084:  BCF    03.5
+0085:  MOVWF  06
+....................             output_c(0b01111100); 
+0086:  MOVLW  00
+0087:  MOVWF  22
+0088:  BSF    03.5
+0089:  CLRF   07
+008A:  MOVLW  7C
+008B:  BCF    03.5
+008C:  MOVWF  07
+....................          } 
+008D:  INCF   20,F
+008E:  BTFSC  03.2
+008F:  INCF   21,F
+0090:  GOTO   06E
+....................       } 
+0091:  GOTO   02F
+....................        
+....................       // burada da  bir periyot bitti. 
+....................        
+....................        
+....................        
+....................        
+....................        
+....................    } 
+....................  
+.................... } 
+0092:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

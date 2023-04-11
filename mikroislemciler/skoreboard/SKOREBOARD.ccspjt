@@ -1,0 +1,42 @@
+[PROJECT]
+Target=SKOREBOARD.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.025
+Compiler=PCM
+CCSVersion=5.025
+[Target Data]
+FileList=SKOREBOARD.c
+[Directories]
+Include=
+[C:\Users\Gokay_Egilmez\Desktop\mikroislemciler\skoreboard\SKOREBOARD]
+Type=4
+[mru-list]
+1=SKOREBOARD.c
+
+[ProjectLog]
+Days=1
+D1=11-04-2023
+D1_L=10
+D1_L1=[77622]Project Opened.
+D1_L2=[77630]Started Editing.
+D1_L3=[79319]Stopped Editing.
+D1_L4=[79588]Started Editing.
+D1_L5=[79960]Stopped Editing.
+D1_L6=[80354]Started Editing.
+D1_L7=[81374]Stopped Editing.
+D1_L8=[81403]Started Editing.
+D1_L9=[81465]Stopped Editing.
+TotalEdit=38
+TotalDebug=0
+D1_E=38
+D1_D=0
+D1_L10=[81465]Project Closed.
+
+[Opened Files]
+1=SKOREBOARD.c
+2=
+[SKOREBOARD.c]
+Type=4
+[Units]
+Count=1
+1=SKOREBOARD (main)

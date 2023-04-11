@@ -1,0 +1,48 @@
+010     @SCRATCH
+011     @SCRATCH
+011     _RETURN_
+012     @SCRATCH
+013     @SCRATCH
+014     i
+015     @TRIS_B
+016     @delay_ms1.P1
+016     main.@SCRATCH1
+
+ROM Allocation:
+000006  @delay_ms1
+000017  @cinit1
+000017  main
+00001D  @cinit2
+
+Project Directory:
+    C:\Users\Gokay_Egilmez\Desktop\mikroiþlemciler 2023\
+
+Project Files:
+    dc_motor_vize_ornek.c                                   [09-Nis-23 00:07  CRC=AEEA479C]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\10F220.h   [18-Nis-14 16:55  CRC=085C79F5]
+
+Source signature=BFA33B86
+
+Units:
+    dc_motor_vize_ornek (main)
+
+Compiler Settings:
+    Processor:      PIC10F220
+    Pointer Size:   5
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   dc_motor_vize_ornek.xsym
+    Errors:      dc_motor_vize_ornek.err
+    Ext Symbols: dc_motor_vize_ornek.esym
+    INHX8:       dc_motor_vize_ornek.hex
+    Symbols:     dc_motor_vize_ornek.sym
+    List:        dc_motor_vize_ornek.lst
+    Debug/COFF:  dc_motor_vize_ornek.cof
+    Project:     dc_motor_vize_ornek.ccspjt
+    Call Tree:   dc_motor_vize_ornek.tre
+    Statistics:  dc_motor_vize_ornek.STA

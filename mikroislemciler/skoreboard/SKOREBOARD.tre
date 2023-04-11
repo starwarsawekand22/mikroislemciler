@@ -1,0 +1,41 @@
+ÀÄSKOREBOARD
+   ÀÄMAIN  0/26  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄbasamak  0/29  Ram=0
+      ³  ÃÄ@DIV88  0/21  Ram=3
+      ³  ÃÄ@DIV88  0/21  Ram=3
+      ³  ÃÄ@DIV88  0/21  Ram=3
+      ³  ÀÄ@DIV88  0/21  Ram=3
+      ÃÄtarama  0/176  Ram=1
+      ³  ÃÄ@const628  0/14  Ram=0
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@const628  0/14  Ram=0
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@const628  0/14  Ram=0
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@const628  0/14  Ram=0
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄ@const628  0/14  Ram=0
+      ³  ÀÄ@delay_ms1  0/21  Ram=1
+      ÀÄtest  0/99  Ram=1
+         ÃÄbasamak  0/29  Ram=0
+         ³  ÀÄ*
+         ÃÄtarama  0/176  Ram=1
+         ³  ÀÄ*
+         ÃÄbasamak  0/29  Ram=0
+         ³  ÀÄ*
+         ÃÄtarama  0/176  Ram=1
+         ³  ÀÄ*
+         ÃÄbasamak  0/29  Ram=0
+         ³  ÀÄ*
+         ÃÄtarama  0/176  Ram=1
+         ³  ÀÄ*
+         ÃÄbasamak  0/29  Ram=0
+         ³  ÀÄ*
+         ÃÄtarama  0/176  Ram=1
+         ³  ÀÄ*
+         ÀÄtarama  0/176  Ram=1
+            ÀÄ*

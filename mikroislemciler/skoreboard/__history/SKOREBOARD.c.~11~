@@ -1,0 +1,148 @@
+#include <16f877a.h>
+#fuses xt, nowdt
+#use delay(clock= 4mhz)
+unsigned int hoca = 0 , ogr =5, devre=1;
+unsigned int hoca_birler, hoca_onlar,ogr_birler,ogr_onlar ; 
+// kod çözücü veya dizi deðiþken tanýmlamasý kullanabiliriz, biz burda dizi deðiþken tanýmlamasý kullanacaðýz.
+const int digit[] ={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x6f, 0x08} // bunlarý sýnavda da hazýr veriyor.
+#define bekle 5
+//**********************************************
+
+void basamak()
+{
+   hoca_onlar = hoca/10;
+   hoca_birler= hoca %10;
+   ogr_onlar =hoca/10;
+   ogr_birler =hoca %10;
+
+}
+
+
+void tarama()
+{
+   //1. display için
+   output_low(pin_c0); //display aktif et
+   output_b(digit[ogr_onlar]); // kodu gönder 1. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c0); //displayi pasif et 
+   
+    //2. display için
+   output_low(pin_c1); //display aktif et
+   output_b(digit[ogr_birler]); // kodu gönder 2. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c1); //displayi pasif et 
+   
+    //3. display için
+   output_low(pin_c2); //display aktif et
+   output_b(digit[10]); // kodu gönder 3. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c2); //displayi pasif et 
+        
+        
+    //4. display için
+   output_low(pin_c3); //display aktif et
+   output_b(digit[10]); // kodu gönder 4. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c3); //displayi pasif et 
+   
+       //5. display için
+   output_low(pin_c4); //display aktif et
+   output_b(digit[devre]); // kodu gönder 5. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c4); //displayi pasif et 
+   
+          //6. display için
+   output_low(pin_c5); //display aktif et
+   output_b(digit[10]); // kodu gönder 6. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c5); //displayi pasif et 
+   
+   //7. display için
+   output_low(pin_c6); //display aktif et
+   output_b(digit[hoca_onlar]); // kodu gönder 7. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c6); //displayi pasif et 
+   
+    //8. display için
+   output_low(pin_c7); //display aktif et
+   output_b(digit[hoca_birler]); // kodu gönder 8. basamaða
+   delay_ms(bekle);// belirli bir süre bekle 
+   output_high(pin_c7); //displayi pasif et 
+   
+   
+}
+
+void test()
+{
+   if(input(pin_a3) == 0 )  // a3 e basýldý mý ? sorusu 
+   {
+      hoca++;
+      if(hoca ==100)
+      hoca=0;
+      basamak();
+      while(input(pin_a3) == 0 )
+      {
+         tarama();
+      }
+      
+   }
+   if(input(pin_a4) == 0 )  // a4 e basýldý mý ? sorusu 
+    {
+       hoca++;
+      if(hoca ==-1)
+      hoca=99;
+      basamak();
+      while(input(pin_a4) == 0 )
+      {
+         tarama();
+      }
+    }
+      
+      if(input(pin_a1) == 0 )  // a1 e basýldý mý ? sorusu 
+   {
+      ogr = ogr+2;
+      if(ogr ==101 || ogr=100)
+      ogr=0;
+      basamak();
+      while(input(pin_a1) == 0 )
+      {
+         tarama();
+      }
+      
+   }
+   if(input(pin_a2) == 0 )  // a2 e basýldý mý ? sorusu 
+    {
+       ogr = ogr-1;
+      if(ogr ==255)
+      ogr=99;
+      basamak();
+      while(input(pin_a2) == 0 )
+      {
+         tarama();
+      }
+    }
+    
+       if(input(pin_a0) == 0 )  // a2 e basýldý mý ? sorusu 
+    {
+       devre = devre+1;
+      if(devre ==3)
+      devre =1;
+      while(input(pin_a2) == 0 )
+      {
+         tarama();
+      }
+    }
+      
+}
+
+void main()
+{
+   output_b(0);
+   basamak();
+   while(TRUE)
+   {
+      tarama();
+      test();
+   }
+
+}

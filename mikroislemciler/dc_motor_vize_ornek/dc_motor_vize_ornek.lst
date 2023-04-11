@@ -1,0 +1,155 @@
+CCS PCB C Compiler, Version 5.025, 5967               09-Nis-23 00:12
+
+               Filename:   C:\Users\Gokay_Egilmez\Desktop\mikroiþlemciler 2023\dc_motor_vize_ornek.lst
+
+               ROM used:   86 words (34%)
+                           Largest free fragment is 170
+               RAM used:   7 (44%) at main() level
+                           7 (44%) worst case
+               Stack used: 0 locations
+               Stack size: 2
+
+*
+0000:  MOVWF  05
+0001:  GOTO   017
+0002:  NOP
+0003:  MOVWF  05
+0004:  GOTO   017
+0005:  GOTO   006
+.................... #include <10F220.h> 
+.................... //////////// Standard Header file for the PIC10F220 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC10F220 
+....................  
+.................... #list 
+....................  
+.................... #fuses NOMCLR, IOSC8 
+.................... #use delay(clock = 8 Mhz) 
+0006:  MOVF   16,W
+0007:  BTFSC  03.2
+0008:  GOTO   016
+0009:  MOVLW  02
+000A:  MOVWF  11
+000B:  CLRF   10
+000C:  DECFSZ 10,F
+000D:  GOTO   00C
+000E:  DECFSZ 11,F
+000F:  GOTO   00B
+0010:  MOVLW  97
+0011:  MOVWF  10
+0012:  DECFSZ 10,F
+0013:  GOTO   012
+0014:  DECFSZ 16,F
+0015:  GOTO   009
+0016:  GOTO   033 (RETURN)
+....................  
+.................... int i =0; 
+.................... void main() 
+0017:  CLRF   04
+0018:  CLRF   14
+0019:  MOVLW  FF
+001A:  MOVWF  15
+001B:  BCF    07.6
+001C:  BCF    07.7
+.................... { 
+....................    SETUP_TIMER_0(0); // timer 0 ý çalýþtýrmayacaðýz. 
+001D:  MOVLW  00
+001E:  OPTION
+....................    output_high(pin_b0); // kýrmýzý ledi yaktýk. header dosyasýndan b0 ý bulduk. 
+001F:  BCF    15.0
+0020:  MOVF   15,W
+0021:  TRIS   6
+0022:  BSF    06.0
+....................    output_low(pin_b1); // yeþil ledi söndür 
+0023:  BCF    15.1
+0024:  MOVF   15,W
+0025:  TRIS   6
+0026:  BCF    06.1
+....................    output_low(pin_b2); // motoru durdur. 
+0027:  BCF    15.2
+0028:  MOVF   15,W
+0029:  TRIS   6
+002A:  BCF    06.2
+....................    while(TRUE) 
+....................    { 
+....................       if(input(pin_b3) == 0) // butona basýldý mý? 
+002B:  BSF    15.3
+002C:  MOVF   15,W
+002D:  TRIS   6
+002E:  BTFSC  06.3
+002F:  GOTO   057
+....................       { 
+....................          delay_ms(50); // buton arkýnýn söndürülmesi için kullanýlýr. 
+0030:  MOVLW  32
+0031:  MOVWF  16
+0032:  GOTO   005
+....................          while(input(pin_b3) == 0) // buton býrakýlana kadar bekle  
+0033:  BSF    15.3
+0034:  MOVF   15,W
+0035:  TRIS   6
+0036:  BTFSC  06.3
+0037:  GOTO   03A
+....................          i++; 
+0038:  INCF   14,F
+0039:  GOTO   033
+....................          if(i == 1) 
+003A:  DECFSZ 14,W
+003B:  GOTO   04B
+....................             { 
+....................             output_high(pin_b2); // motoru çalýþtýr. 
+003C:  BCF    15.2
+003D:  MOVF   15,W
+003E:  TRIS   6
+003F:  BSF    06.2
+....................             output_low(pin_b0); // kýrmýzý ledi söndür 
+0040:  BCF    15.0
+0041:  MOVF   15,W
+0042:  TRIS   6
+0043:  BCF    06.0
+....................             output_high(pin_b1); // yeþil ledi yak 
+0044:  BCF    15.1
+0045:  MOVF   15,W
+0046:  TRIS   6
+0047:  BSF    06.1
+....................             i =255; //motoru bir sonraki döngüde durdurmak için yazdýk. 
+0048:  MOVLW  FF
+0049:  MOVWF  14
+....................             } 
+004A:  GOTO   057
+....................          else  
+....................             { 
+....................             output_low(pin_b2); // motoru durdur.          
+004B:  BCF    15.2
+004C:  MOVF   15,W
+004D:  TRIS   6
+004E:  BCF    06.2
+....................             output_high(pin_b0); // kýrmýzý ledi yaktýk. header dosyasýndan b0 ý bulduk. 
+004F:  BCF    15.0
+0050:  MOVF   15,W
+0051:  TRIS   6
+0052:  BSF    06.0
+....................             output_low(pin_b1); // yeþil ledi söndür 
+0053:  BCF    15.1
+0054:  MOVF   15,W
+0055:  TRIS   6
+0056:  BCF    06.1
+....................             } 
+....................           
+....................           
+....................       } 
+0057:  GOTO   02B
+....................    } 
+....................  
+.................... } 
+0058:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0FEB   IOSC8 NOMCPU NOWDT NOPROTECT NOMCLR

@@ -1,0 +1,45 @@
+[PROJECT]
+Target=dc_motor_vize_ornek.hex
+Processor_Text=PIC10F220
+CCSVerions=5.025
+Compiler=PCB
+CCSVersion=5.025
+[Target Data]
+FileList=dc_motor_vize_ornek.c
+[Directories]
+Include=
+[C:\Users\Gokay_Egilmez\Desktop\mikroiþlemciler 2023\dc_motor_vize_ornek]
+Type=4
+[mru-list]
+1=dc_motor_vize_ornek.c
+
+[ProjectLog]
+Days=3
+D1=08-04-2023
+D1_L=2
+D1_L1=[85432]Project Opened.
+D1_L2=[85446]Started Editing.
+D2=09-04-2023
+D2_L=4
+D2_L1=[712]Stopped Editing.
+TotalEdit=23
+TotalDebug=0
+D2_E=23
+D2_D=0
+D2_L2=[753]Project Closed.
+D2_L3=[963]Project Opened.
+D2_L4=[966]Project Closed.
+D3=11-04-2023
+D3_L=2
+D3_L1=[73631]Project Opened.
+D3_L2=[73693]Project Closed.
+
+[Opened Files]
+1=dc_motor_vize_ornek.c
+2=..\..\..\..\Program Files (x86)\PICC\Devices\10F220.h
+3=
+[dc_motor_vize_ornek.c]
+Type=4
+[Units]
+Count=1
+1=dc_motor_vize_ornek (main)

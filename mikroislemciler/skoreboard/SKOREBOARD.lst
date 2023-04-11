@@ -1,0 +1,570 @@
+CCS PCM C Compiler, Version 5.025, 5967               11-Nis-23 22:36
+
+               Filename:   C:\Users\Gokay_Egilmez\Desktop\mikroislemciler\skoreboard\SKOREBOARD.lst
+
+               ROM used:   390 words (5%)
+                           Largest free fragment is 2048
+               RAM used:   13 (4%) at main() level
+                           16 (4%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   16C
+0003:  NOP
+.................... #include <16f877a.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  3F
+0009:  RETLW  06
+000A:  RETLW  5B
+000B:  RETLW  4F
+000C:  RETLW  66
+000D:  RETLW  6D
+000E:  RETLW  7D
+000F:  RETLW  07
+0010:  RETLW  6F
+0011:  RETLW  08
+0012:  MOVF   29,W
+0013:  CLRF   78
+0014:  SUBWF  28,W
+0015:  BTFSC  03.0
+0016:  GOTO   01A
+0017:  MOVF   28,W
+0018:  MOVWF  77
+0019:  GOTO   026
+001A:  CLRF   77
+001B:  MOVLW  08
+001C:  MOVWF  2A
+001D:  RLF    28,F
+001E:  RLF    77,F
+001F:  MOVF   29,W
+0020:  SUBWF  77,W
+0021:  BTFSC  03.0
+0022:  MOVWF  77
+0023:  RLF    78,F
+0024:  DECFSZ 2A,F
+0025:  GOTO   01D
+0026:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #fuses xt, nowdt 
+.................... #use delay(clock= 4mhz) 
+*
+0044:  MOVLW  28
+0045:  MOVWF  04
+0046:  BCF    03.7
+0047:  MOVF   00,W
+0048:  BTFSC  03.2
+0049:  GOTO   058
+004A:  MOVLW  01
+004B:  MOVWF  78
+004C:  CLRF   77
+004D:  DECFSZ 77,F
+004E:  GOTO   04D
+004F:  DECFSZ 78,F
+0050:  GOTO   04C
+0051:  MOVLW  4A
+0052:  MOVWF  77
+0053:  DECFSZ 77,F
+0054:  GOTO   053
+0055:  GOTO   056
+0056:  DECFSZ 00,F
+0057:  GOTO   04A
+0058:  RETURN
+.................... unsigned int hoca = 0 , ogr =5, devre=1; 
+.................... unsigned int hoca_birler, hoca_onlar,ogr_birler,ogr_onlar ;  
+.................... // kod çözücü veya dizi deðiþken tanýmlamasý kullanabiliriz, biz burda dizi deðiþken tanýmlamasý kullanacaðýz. 
+.................... const int digit[] ={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x6f, 0x08} ;// bunlarý sýnavda da hazýr veriyor. 
+.................... #define bekle 5 
+.................... //********************************************** 
+....................  
+.................... void basamak() 
+.................... { 
+....................    hoca_onlar = hoca/10; 
+*
+0027:  MOVF   20,W
+0028:  MOVWF  28
+0029:  MOVLW  0A
+002A:  MOVWF  29
+002B:  CALL   012
+002C:  MOVF   78,W
+002D:  MOVWF  24
+....................    hoca_birler= hoca %10; 
+002E:  MOVF   20,W
+002F:  MOVWF  28
+0030:  MOVLW  0A
+0031:  MOVWF  29
+0032:  CALL   012
+0033:  MOVF   77,W
+0034:  MOVWF  23
+....................    ogr_onlar =hoca/10; 
+0035:  MOVF   20,W
+0036:  MOVWF  28
+0037:  MOVLW  0A
+0038:  MOVWF  29
+0039:  CALL   012
+003A:  MOVF   78,W
+003B:  MOVWF  26
+....................    ogr_birler =hoca %10; 
+003C:  MOVF   20,W
+003D:  MOVWF  28
+003E:  MOVLW  0A
+003F:  MOVWF  29
+0040:  CALL   012
+0041:  MOVF   77,W
+0042:  MOVWF  25
+0043:  RETURN
+....................  
+.................... } 
+....................  
+....................  
+.................... void tarama() 
+.................... { 
+....................    //1. display için 
+....................    output_low(pin_c0); //display aktif et 
+*
+0059:  BCF    27.0
+005A:  MOVF   27,W
+005B:  BSF    03.5
+005C:  MOVWF  07
+005D:  BCF    03.5
+005E:  BCF    07.0
+....................    output_b(digit[ogr_onlar]); // kodu gönder 1. basamaða 
+005F:  MOVF   26,W
+0060:  CALL   004
+0061:  MOVWF  28
+0062:  BSF    03.5
+0063:  CLRF   06
+0064:  BCF    03.5
+0065:  MOVF   28,W
+0066:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+0067:  MOVLW  05
+0068:  MOVWF  28
+0069:  CALL   044
+....................    output_high(pin_c0); //displayi pasif et  
+006A:  BCF    27.0
+006B:  MOVF   27,W
+006C:  BSF    03.5
+006D:  MOVWF  07
+006E:  BCF    03.5
+006F:  BSF    07.0
+....................     
+....................     //2. display için 
+....................    output_low(pin_c1); //display aktif et 
+0070:  BCF    27.1
+0071:  MOVF   27,W
+0072:  BSF    03.5
+0073:  MOVWF  07
+0074:  BCF    03.5
+0075:  BCF    07.1
+....................    output_b(digit[ogr_birler]); // kodu gönder 2. basamaða 
+0076:  MOVF   25,W
+0077:  CALL   004
+0078:  MOVWF  28
+0079:  BSF    03.5
+007A:  CLRF   06
+007B:  BCF    03.5
+007C:  MOVF   28,W
+007D:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+007E:  MOVLW  05
+007F:  MOVWF  28
+0080:  CALL   044
+....................    output_high(pin_c1); //displayi pasif et  
+0081:  BCF    27.1
+0082:  MOVF   27,W
+0083:  BSF    03.5
+0084:  MOVWF  07
+0085:  BCF    03.5
+0086:  BSF    07.1
+....................     
+....................     //3. display için 
+....................    output_low(pin_c2); //display aktif et 
+0087:  BCF    27.2
+0088:  MOVF   27,W
+0089:  BSF    03.5
+008A:  MOVWF  07
+008B:  BCF    03.5
+008C:  BCF    07.2
+....................    output_b(digit[10]); // kodu gönder 3. basamaða 
+008D:  BSF    03.5
+008E:  CLRF   06
+008F:  BCF    03.5
+0090:  MOVF   29,W
+0091:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+0092:  MOVLW  05
+0093:  MOVWF  28
+0094:  CALL   044
+....................    output_high(pin_c2); //displayi pasif et  
+0095:  BCF    27.2
+0096:  MOVF   27,W
+0097:  BSF    03.5
+0098:  MOVWF  07
+0099:  BCF    03.5
+009A:  BSF    07.2
+....................          
+....................          
+....................     //4. display için 
+....................    output_low(pin_c3); //display aktif et 
+009B:  BCF    27.3
+009C:  MOVF   27,W
+009D:  BSF    03.5
+009E:  MOVWF  07
+009F:  BCF    03.5
+00A0:  BCF    07.3
+....................    output_b(digit[10]); // kodu gönder 4. basamaða 
+00A1:  BSF    03.5
+00A2:  CLRF   06
+00A3:  BCF    03.5
+00A4:  MOVF   29,W
+00A5:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+00A6:  MOVLW  05
+00A7:  MOVWF  28
+00A8:  CALL   044
+....................    output_high(pin_c3); //displayi pasif et  
+00A9:  BCF    27.3
+00AA:  MOVF   27,W
+00AB:  BSF    03.5
+00AC:  MOVWF  07
+00AD:  BCF    03.5
+00AE:  BSF    07.3
+....................     
+....................        //5. display için 
+....................    output_low(pin_c4); //display aktif et 
+00AF:  BCF    27.4
+00B0:  MOVF   27,W
+00B1:  BSF    03.5
+00B2:  MOVWF  07
+00B3:  BCF    03.5
+00B4:  BCF    07.4
+....................    output_b(digit[devre]); // kodu gönder 5. basamaða 
+00B5:  MOVF   22,W
+00B6:  CALL   004
+00B7:  MOVWF  28
+00B8:  BSF    03.5
+00B9:  CLRF   06
+00BA:  BCF    03.5
+00BB:  MOVF   28,W
+00BC:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+00BD:  MOVLW  05
+00BE:  MOVWF  28
+00BF:  CALL   044
+....................    output_high(pin_c4); //displayi pasif et  
+00C0:  BCF    27.4
+00C1:  MOVF   27,W
+00C2:  BSF    03.5
+00C3:  MOVWF  07
+00C4:  BCF    03.5
+00C5:  BSF    07.4
+....................     
+....................           //6. display için 
+....................    output_low(pin_c5); //display aktif et 
+00C6:  BCF    27.5
+00C7:  MOVF   27,W
+00C8:  BSF    03.5
+00C9:  MOVWF  07
+00CA:  BCF    03.5
+00CB:  BCF    07.5
+....................    output_b(digit[10]); // kodu gönder 6. basamaða 
+00CC:  BSF    03.5
+00CD:  CLRF   06
+00CE:  BCF    03.5
+00CF:  MOVF   29,W
+00D0:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+00D1:  MOVLW  05
+00D2:  MOVWF  28
+00D3:  CALL   044
+....................    output_high(pin_c5); //displayi pasif et  
+00D4:  BCF    27.5
+00D5:  MOVF   27,W
+00D6:  BSF    03.5
+00D7:  MOVWF  07
+00D8:  BCF    03.5
+00D9:  BSF    07.5
+....................     
+....................    //7. display için 
+....................    output_low(pin_c6); //display aktif et 
+00DA:  BCF    27.6
+00DB:  MOVF   27,W
+00DC:  BSF    03.5
+00DD:  MOVWF  07
+00DE:  BCF    03.5
+00DF:  BCF    07.6
+....................    output_b(digit[hoca_onlar]); // kodu gönder 7. basamaða 
+00E0:  MOVF   24,W
+00E1:  CALL   004
+00E2:  MOVWF  28
+00E3:  BSF    03.5
+00E4:  CLRF   06
+00E5:  BCF    03.5
+00E6:  MOVF   28,W
+00E7:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+00E8:  MOVLW  05
+00E9:  MOVWF  28
+00EA:  CALL   044
+....................    output_high(pin_c6); //displayi pasif et  
+00EB:  BCF    27.6
+00EC:  MOVF   27,W
+00ED:  BSF    03.5
+00EE:  MOVWF  07
+00EF:  BCF    03.5
+00F0:  BSF    07.6
+....................     
+....................     //8. display için 
+....................    output_low(pin_c7); //display aktif et 
+00F1:  BCF    27.7
+00F2:  MOVF   27,W
+00F3:  BSF    03.5
+00F4:  MOVWF  07
+00F5:  BCF    03.5
+00F6:  BCF    07.7
+....................    output_b(digit[hoca_birler]); // kodu gönder 8. basamaða 
+00F7:  MOVF   23,W
+00F8:  CALL   004
+00F9:  MOVWF  28
+00FA:  BSF    03.5
+00FB:  CLRF   06
+00FC:  BCF    03.5
+00FD:  MOVF   28,W
+00FE:  MOVWF  06
+....................    delay_ms(bekle);// belirli bir süre bekle  
+00FF:  MOVLW  05
+0100:  MOVWF  28
+0101:  CALL   044
+....................    output_high(pin_c7); //displayi pasif et  
+0102:  BCF    27.7
+0103:  MOVF   27,W
+0104:  BSF    03.5
+0105:  MOVWF  07
+0106:  BCF    03.5
+0107:  BSF    07.7
+0108:  RETURN
+....................     
+....................     
+.................... } 
+....................  
+.................... void test() 
+.................... { 
+....................    if(input(pin_a3) == 0 )  // a3 e basýldý mý ? sorusu  
+0109:  BSF    03.5
+010A:  BSF    05.3
+010B:  BCF    03.5
+010C:  BTFSC  05.3
+010D:  GOTO   11B
+....................    { 
+....................       hoca++; 
+010E:  INCF   20,F
+....................       if(hoca ==100) 
+010F:  MOVF   20,W
+0110:  SUBLW  64
+0111:  BTFSC  03.2
+....................       hoca=0; 
+0112:  CLRF   20
+....................       basamak(); 
+0113:  CALL   027
+....................       while(input(pin_a3) == 0 ) 
+0114:  BSF    03.5
+0115:  BSF    05.3
+0116:  BCF    03.5
+0117:  BTFSC  05.3
+0118:  GOTO   11B
+....................       { 
+....................          tarama(); 
+0119:  CALL   059
+011A:  GOTO   114
+....................       } 
+....................        
+....................    } 
+....................    if(input(pin_a4) == 0 )  // a4 e basýldý mý ? sorusu  
+011B:  BSF    03.5
+011C:  BSF    05.4
+011D:  BCF    03.5
+011E:  BTFSC  05.4
+011F:  GOTO   12F
+....................     { 
+....................        hoca++; 
+0120:  INCF   20,F
+....................       if(hoca ==-1) 
+0121:  MOVF   20,W
+0122:  SUBLW  FF
+0123:  BTFSS  03.2
+0124:  GOTO   127
+....................       hoca=99; 
+0125:  MOVLW  63
+0126:  MOVWF  20
+....................       basamak(); 
+0127:  CALL   027
+....................       while(input(pin_a4) == 0 ) 
+0128:  BSF    03.5
+0129:  BSF    05.4
+012A:  BCF    03.5
+012B:  BTFSC  05.4
+012C:  GOTO   12F
+....................       { 
+....................          tarama(); 
+012D:  CALL   059
+012E:  GOTO   128
+....................       } 
+....................     } 
+....................        
+....................       if(input(pin_a1) == 0 )  // a1 e basýldý mý ? sorusu  
+012F:  BSF    03.5
+0130:  BSF    05.1
+0131:  BCF    03.5
+0132:  BTFSC  05.1
+0133:  GOTO   142
+....................    { 
+....................       ogr = ogr+2; 
+0134:  MOVLW  02
+0135:  ADDWF  21,F
+....................       if(ogr == 101 ) 
+0136:  MOVF   21,W
+0137:  SUBLW  65
+0138:  BTFSC  03.2
+....................       ogr=0; 
+0139:  CLRF   21
+....................       basamak(); 
+013A:  CALL   027
+....................       while(input(pin_a1) == 0 ) 
+013B:  BSF    03.5
+013C:  BSF    05.1
+013D:  BCF    03.5
+013E:  BTFSC  05.1
+013F:  GOTO   142
+....................       { 
+....................          tarama(); 
+0140:  CALL   059
+0141:  GOTO   13B
+....................       } 
+....................        
+....................    } 
+....................    if(input(pin_a2) == 0 )  // a2 e basýldý mý ? sorusu  
+0142:  BSF    03.5
+0143:  BSF    05.2
+0144:  BCF    03.5
+0145:  BTFSC  05.2
+0146:  GOTO   155
+....................     { 
+....................        ogr = ogr-1; 
+0147:  MOVLW  01
+0148:  SUBWF  21,F
+....................       if(ogr ==255) 
+0149:  INCFSZ 21,W
+014A:  GOTO   14D
+....................       ogr=99; 
+014B:  MOVLW  63
+014C:  MOVWF  21
+....................       basamak(); 
+014D:  CALL   027
+....................       while(input(pin_a2) == 0 ) 
+014E:  BSF    03.5
+014F:  BSF    05.2
+0150:  BCF    03.5
+0151:  BTFSC  05.2
+0152:  GOTO   155
+....................       { 
+....................          tarama(); 
+0153:  CALL   059
+0154:  GOTO   14E
+....................       } 
+....................     } 
+....................      
+....................        if(input(pin_a0) == 0 )  // a2 e basýldý mý ? sorusu  
+0155:  BSF    03.5
+0156:  BSF    05.0
+0157:  BCF    03.5
+0158:  BTFSC  05.0
+0159:  GOTO   169
+....................     { 
+....................        devre = devre+1; 
+015A:  MOVLW  01
+015B:  ADDWF  22,F
+....................       if(devre ==3) 
+015C:  MOVF   22,W
+015D:  SUBLW  03
+015E:  BTFSS  03.2
+015F:  GOTO   162
+....................       devre =1; 
+0160:  MOVLW  01
+0161:  MOVWF  22
+....................       while(input(pin_a2) == 0 ) 
+0162:  BSF    03.5
+0163:  BSF    05.2
+0164:  BCF    03.5
+0165:  BTFSC  05.2
+0166:  GOTO   169
+....................       { 
+....................          tarama(); 
+0167:  CALL   059
+0168:  GOTO   162
+....................       } 
+....................     } 
+0169:  BCF    0A.3
+016A:  BCF    0A.4
+016B:  GOTO   184 (RETURN)
+....................        
+.................... } 
+....................  
+.................... void main() 
+016C:  MOVF   03,W
+016D:  ANDLW  1F
+016E:  MOVWF  03
+016F:  CLRF   20
+0170:  MOVLW  05
+0171:  MOVWF  21
+0172:  MOVLW  01
+0173:  MOVWF  22
+0174:  MOVLW  FF
+0175:  MOVWF  27
+0176:  BSF    03.5
+0177:  BSF    1F.0
+0178:  BSF    1F.1
+0179:  BSF    1F.2
+017A:  BCF    1F.3
+017B:  MOVLW  07
+017C:  MOVWF  1C
+017D:  BCF    03.7
+.................... { 
+....................    output_b(0); 
+017E:  CLRF   06
+017F:  BCF    03.5
+0180:  CLRF   06
+....................    basamak(); 
+0181:  CALL   027
+....................    while(TRUE) 
+....................    { 
+....................       tarama(); 
+0182:  CALL   059
+....................       test(); 
+0183:  GOTO   109
+0184:  GOTO   182
+....................    } 
+....................  
+.................... } 
+0185:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

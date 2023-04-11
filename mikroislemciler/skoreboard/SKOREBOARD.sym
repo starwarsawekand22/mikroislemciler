@@ -1,0 +1,77 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     hoca
+021     ogr
+022     devre
+023     hoca_birler
+024     hoca_onlar
+025     ogr_birler
+026     ogr_onlar
+027     @TRIS_C
+028     @delay_ms1.P1
+028     @DIV88.P2
+028     tarama.@SCRATCH1
+028     test.@SCRATCH1
+029     @DIV88.P1
+02A     @DIV88.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  digit.call
+000008  digit.data
+000012  @DIV88
+000027  basamak
+000044  @delay_ms1
+000059  tarama
+000109  test
+00016C  @cinit1
+00016C  MAIN
+00017D  @cinit2
+
+Project Directory:
+    C:\Users\Gokay_Egilmez\Desktop\mikroislemciler\skoreboard\
+
+Project Files:
+    SKOREBOARD.c                                            [11-Nis-23 22:36  CRC=D92B5601]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16f877a.h [18-Nis-14 16:56  CRC=4F277C97]
+
+Source signature=777A4F2F
+
+Units:
+    SKOREBOARD (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   SKOREBOARD.xsym
+    Errors:      SKOREBOARD.err
+    Ext Symbols: SKOREBOARD.esym
+    INHX8:       SKOREBOARD.hex
+    Symbols:     SKOREBOARD.sym
+    List:        SKOREBOARD.lst
+    Debug/COFF:  SKOREBOARD.cof
+    Project:     SKOREBOARD.ccspjt
+    Call Tree:   SKOREBOARD.tre
+    Statistics:  SKOREBOARD.STA

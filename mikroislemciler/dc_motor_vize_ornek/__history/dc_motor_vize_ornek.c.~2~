@@ -1,0 +1,11 @@
+#include <10F220.h>
+#fuses NOMCLR
+void main()
+{
+
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

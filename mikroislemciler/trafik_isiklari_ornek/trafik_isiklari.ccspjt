@@ -1,0 +1,33 @@
+[PROJECT]
+Target=trafik_isiklari.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.025
+Compiler=PCM
+CCSVersion=5.025
+[Target Data]
+FileList=trafik_isiklari.c
+[Directories]
+Include=
+[C:\Users\Gokay_Egilmez\Desktop\mikroislemciler\trafik_isiklari_ornek\trafik_isiklari]
+Type=4
+[mru-list]
+1=trafik_isiklari.c
+
+[ProjectLog]
+Days=1
+D1=11-04-2023
+D1_L=5
+D1_L1=[73789]Project Opened.
+D1_L2=[73997]Started Editing.
+D1_L3=[75284]Stopped Editing.
+D1_L4=[75317]Started Editing.
+D1_L5=[75835]Project Closed.
+
+[Opened Files]
+1=trafik_isiklari.c
+2=
+[trafik_isiklari.c]
+Type=4
+[Units]
+Count=1
+1=trafik_isiklari (main)

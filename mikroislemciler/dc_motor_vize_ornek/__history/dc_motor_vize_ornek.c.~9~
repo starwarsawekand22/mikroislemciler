@@ -1,0 +1,37 @@
+#include <10F220.h>
+#fuses NOMCLR, IOSC8
+#use delay (clock = 8 Mhz)
+
+int i =0;
+void main()
+{
+   SETUP_TIMER_0(0); // timer 0 ý çalýþtýrmayacaðýz.
+   output_high(pin_b0); // kýrmýzý ledi yaktýk. header dosyasýndan b0 ý bulduk.
+   output_low(pin_b1); // yeþil ledi söndür
+   output_low(pin_b2); // motoru durdur.
+   while(TRUE)
+   {
+      if(input(pin_b3) == 0) // butona basýldý mý?
+      {
+         delay_ms(50); // buton arkýnýn söndürülmesi için kullanýlýr.
+         while(input(pin_b3) == 0) // buton býrakýlana kadar bekle 
+         i++;
+         if(i == 1)
+            {
+            output_high(pin_b2); // motoru çalýþtýr.
+            output_low(pin_b0); // kýrmýzý ledi söndür
+            output_high(pin_b1); // yeþil ledi yak
+            i =0;
+            }
+         else 
+            {
+            output_low(pin_b2); // motoru durdur.         
+            output_high(pin_b0); // kýrmýzý ledi yaktýk. header dosyasýndan b0 ý bulduk.
+            output_low(pin_b1); // yeþil ledi söndür
+            }
+         
+         
+      }
+   }
+
+}

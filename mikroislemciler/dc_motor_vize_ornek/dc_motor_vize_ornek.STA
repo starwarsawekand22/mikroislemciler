@@ -1,0 +1,45 @@
+
+ROM used:   86/256 (34%)
+            86/256 (34%) including unused fragments
+
+            0.2 Average locations per line
+            4.1 Average locations per statement
+
+RAM used:   7/16 (44%) at main() level
+            7/16 (44%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 2
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   38    21 100  dc_motor_vize_ornek.c
+  399     0   0  ..\..\..\..\Program Files (x86)\PICC\Devices\10F220.h
+----- -----
+  437    21 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     17  20    1             @delay_ms1
+0     66  77    1    439  4.3  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              21
+    Comments                91
+    Volume (V)              444
+    Difficulty (D)          4.0
+    Effort to implement (E) 1789
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    130
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  -3  
+00003-000FF    83  170  
+
+
+

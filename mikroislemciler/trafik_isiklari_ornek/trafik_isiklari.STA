@@ -1,0 +1,48 @@
+
+ROM used:   147/8192 (2%)
+            147/8192 (2%) including unused fragments
+
+            0.2 Average locations per line
+            6.7 Average locations per statement
+
+RAM used:   8/368 (2%) at main() level
+            9/368 (2%) worst case
+
+Stack used: 1 worst case (1 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   47    22 100  trafik_isiklari.c
+  672     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\16f877a.h
+----- -----
+  719    22 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     21  14    1             @delay_ms1
+0    122  83    0    522  4.8  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              22
+    Comments                127
+    Volume (V)              527
+    Difficulty (D)          4.5
+    Effort to implement (E) 2390
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    38
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   143  1901  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+
